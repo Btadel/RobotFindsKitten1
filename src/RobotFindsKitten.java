@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class devoir1Main {
+public class RobotFindsKitten {
 
 	public static void main(String[] args) {
 		
