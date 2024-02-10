@@ -10,6 +10,7 @@ public class Grille {
 	/* Constructeur : 
 	 */
 	
+     
 	public Grille(int nbrPiecesX, int nbrPiecesY, int largeurPiece, 
 				  int hauteurPiece, int nbrNonKitten) {
 		this.grille = new Case[nbrPiecesX*(largeurPiece+1)][nbrPiecesY*(hauteurPiece+1)];
