@@ -1,5 +1,3 @@
-package devoir1;
-
 public class Kitten extends Case{
 	private Point position;
 	

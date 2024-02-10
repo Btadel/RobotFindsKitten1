@@ -1,5 +1,3 @@
-package devoir1;
-
 public class Mur extends Case {
 	Point position;
 	

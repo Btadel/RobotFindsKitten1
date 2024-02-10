@@ -1,5 +1,3 @@
-package devoir1;
-
 public class Grille {
 	
 	/* Tableau 2D de cases

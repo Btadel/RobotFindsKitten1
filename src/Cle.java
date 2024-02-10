@@ -1,5 +1,3 @@
-package devoir1;
-
 public class Cle extends Case {
 	private Point position;
 	

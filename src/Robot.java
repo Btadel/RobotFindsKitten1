@@ -1,5 +1,3 @@
-package devoir1;
-
 public class Robot {
 	private String nom; 
 	private Point point; 

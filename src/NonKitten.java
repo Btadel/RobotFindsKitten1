@@ -1,5 +1,3 @@
-
-
 public class NonKitten extends Case {
 public static String[] descriptions = new String[]{
         "I pity the fool who mistakes me for kitten!\", sez Mr. T.",

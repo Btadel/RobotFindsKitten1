@@ -1,5 +1,3 @@
-package devoir1;
-
 public abstract class Case {
 	protected char representation;
 	/**

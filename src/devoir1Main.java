@@ -1,5 +1,3 @@
-package devoir1;
-
 import java.util.Scanner;
 
 public class devoir1Main {

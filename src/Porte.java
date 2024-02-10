@@ -1,5 +1,3 @@
-package devoir1;
-
 public class Porte extends Case{
 	
 	// Le booléen état représente si la porte est ouverte ou fermée
