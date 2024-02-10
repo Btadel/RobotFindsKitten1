@@ -1,5 +1,7 @@
+package devoir1;
+
 public class Cle extends Case {
-private Point position;
+	private Point position;
 	
 	public Cle(Point position) {
 		this.position = position;
