@@ -12,7 +12,6 @@ public class Cle extends Case {
 
 	@Override
 	public void interagir(Robot robot) {
-		// Il faut créer un getter et setter nbCles dans la classe Robot
 		int nbCles = robot.getNbCles() + 1;
 		robot.setNbCles(nbCles);
 	} 

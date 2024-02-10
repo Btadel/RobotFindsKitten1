@@ -1,4 +1,9 @@
 public class Teleporteur extends Case{
+	
+	/* À faire : - fonction qui permet de se téléporter à n'importe quel endroit dans la grille
+	 * 
+	 */
+	
 	private Point position;
 	
 	public Teleporteur(Point position) {

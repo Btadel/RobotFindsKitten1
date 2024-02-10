@@ -3,6 +3,11 @@ public class Grille {
 	/* Tableau 2D de cases
 	 */
 	
+	/*
+	 * à faire : - la boucle doit initialiser la grille de cases (mettres les bons éléments aux bons 
+	 * 				endroits dans la matrice) ET print la grille
+	 */
+	
 	private Case[][] grille; 
 	
 	/* Constructeur : 
