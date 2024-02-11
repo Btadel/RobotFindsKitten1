@@ -22,34 +22,70 @@ public class RobotFindsKitten {
 		
 		Robot robot = new Robot("R.O.B", depart, 0, false);
 		Kitten kitten = new Kitten("Caramel", grilleJeu.randomEmptyCell());
-		grilleJeu.afficher(robot);
 		
-		//**  À FAIRE : définir la méthode afficher 
-		/* grilleJeu.afficher(robot);
-		 */
-
+		// Affichage Initial
+		grilleJeu.afficher(robot);
 		System.out.println(robot.getNom() + "[" + robot.getNbCles() + "]>");
 		
-		
-		/**Permet à l'utilisateur de se déplacer 
-		 * À FAIRE : fonction qui analyse ce que l'utilisateur rentre ("a","s","d","w") pour se déplacer
-		 * 			 (va changer la position du robot)
-		 */
+		// Boucle pour bouger le robot 
+		while (finDuJeu(kitten, robot) == false) {
 		Scanner scanner = new Scanner(System.in);
-		String deplacement  = scanner.nextLine();
-		
+		char deplacement  = scanner.nextLine().charAt(0);
+		deplacerRobot(robot, deplacement, grille);
+		grilleJeu.afficher(robot);
+		System.out.println(robot.getNom() + "[" + robot.getNbCles() + "]>");
 		}
+	}
 		
 	// Fonction qui détermine si le jeu est gagné
 	
-	public static boolean finDuJeu(Kitten kitten, Robot robot, boolean partieTerminee) {
+	public static boolean finDuJeu(Kitten kitten, Robot robot) {
 			Point posKitten = kitten.getPosition();
 			Point posRobot = robot.getPoint();
+			boolean partieTerminee = false;
 		
 			if (posKitten == posRobot) {
 				partieTerminee = true;
 			}
 			return partieTerminee;
 	}
+	
+	// À FAIRE : - Le robot n'interragit pas avec les objets nonKitten et le teleporteur
+	//			 - Le robot peut passer genre cinq fois sur la même clés et avoir cinq clés
+	
+	public static void deplacerRobot(Robot robot, char entree, Case[][] grille) {
+		int positionRobotX = robot.getPoint().getX();
+		int positionRobotY = robot.getPoint().getY();
+		Point nouvellePos = null;
+		
+		if (entree == 'a') {
+			nouvellePos = new Point(positionRobotX-1,positionRobotY);
+			}
+		else if (entree == 'w') {
+			nouvellePos = new Point(positionRobotX,positionRobotY-1);
+		}
+		else if (entree == 's') {
+			nouvellePos = new Point(positionRobotX,positionRobotY+1);
+		}
+		else if (entree == 'd') {
+			nouvellePos = new Point(positionRobotX+1,positionRobotY);
+		}
+		int nouvellePosX = nouvellePos.getX();
+		int nouvellePosY = nouvellePos.getY();
+		
+		Case objet = grille[nouvellePosX][nouvellePosY];
+		
+		if (objet != null && objet.interactionPossible(robot) != false) {
+			objet.interagir(robot);
+			robot.setPoint(nouvellePos);
+			}
+		if (objet == null) {
+			robot.setPoint(nouvellePos);
+		}
+		else {
+			System.out.println("Déplacement impossible");
+		}
+	}
+	
 	
 }
