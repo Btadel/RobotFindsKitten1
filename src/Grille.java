@@ -1,107 +1,152 @@
 public class Grille {
-
-    /* Tableau 2D de cases
-     */
-
-    private Case[][] grille;
-
-    /* Constructeur :
-     */
-
-    public Grille(int nbrPiecesX, int nbrPiecesY, int largeurPiece,
-                  int hauteurPiece, int nbrNonKitten) {
-
-        this.grille = grille;
-
-
-        /* Trouver les cases qui auront des non-kitten items
-         */
-
-        int[] tabHorizontal = new int[nbrNonKitten];
-        int[] tabVertical = new int[nbrNonKitten];
-
-
-        for (int k = 0; k < nbrNonKitten; k++) {
-            do {
-                tabHorizontal[k] = (int) (Math.random()*nbrPiecesX*(largeurPiece+1));
-                tabVertical[k] = (int) (Math.random()*nbrPiecesY*(hauteurPiece+1));
-            }
-            while (tabHorizontal[k]%(largeurPiece+1) == 0 || tabVertical[k]%(hauteurPiece+1)==0);
-        }
-
-        /* Boucle pour print la grille de jeu
-         */
-        int compteur = 0;
-        //grille debut
-        for (int j = 0; j <= nbrPiecesY * (hauteurPiece + 1); j++) {
-            StringBuilder horizontal = new StringBuilder();
-
-            if (j % (hauteurPiece + 1) == 0) {
-                if (j != 0 && j != nbrPiecesY * (hauteurPiece + 1)) {
-                    for (int i = 0; i <= nbrPiecesX * (largeurPiece + 1); i++) {
-                        if (i % (largeurPiece +1) == largeurPiece/2) {
-                            horizontal.append("!");
-                        } else {
-                            horizontal.append("%");
-                        }
-                    }
-                } else {
-                    horizontal.append("%".repeat(Math.max(0, nbrPiecesX * (largeurPiece + 1) + 1)));
-                }
-                System.out.println(horizontal);
-            } else {
-                for (int i = 0; i <= nbrPiecesX * (largeurPiece + 1); i++) {
-                    if (i % (largeurPiece + 1) == 0) {
-                        if (j % (hauteurPiece / 2 + 1) == 0 && i != 0 && i != nbrPiecesX * (largeurPiece + 1)) {
-                            horizontal.append("!");
-                        } else {
-                            horizontal.append("%");
-                        }
-                        //grille fin
-                    } else {//affiche les randoms characters pendant le creation de la grilles
-                        boolean nonKittenFound = false;
-                        for (int k = 0; k < nbrNonKitten; k++) {
-                            if (i == tabHorizontal[k] && j == tabVertical[k]) {
-                                char symbole = Case.getRandomSymbole();
-                                horizontal.append(symbole);
-                                compteur += 1;
-                                nonKittenFound = true;
-                                break;
-                            }
-                        }
-                        if (!nonKittenFound) {
-                            horizontal.append(" ");
-                        }
-                    }
-                }
-                System.out.println(horizontal);
-            }
-        }
-    }
+	
+	/* Tableau 2D de cases
+	 */
+	private Case[][] grille; 
+	
+	/* Constructeur : 
+	 */
+	
+	public Grille(int nbrPiecesX, int nbrPiecesY, int largeurPiece, 
+				  int hauteurPiece, int nbrNonKitten) {
+		this.grille = new Case[nbrPiecesX*(largeurPiece+1)][nbrPiecesY*(hauteurPiece+1)+1];
+		
+	// Créer l'objet Grille, qui sera print avec la fonction afficher (plus bas)
+	// !!! Parfois les portes apparaissent au mauvais endroit quand on change hauteur/largeur
+		
+		for (int j = 0; j < this.grille[0].length; j++) {
+			 if (j % (hauteurPiece + 1) == 0) {
+	                if (j != 0 && j != nbrPiecesY * (hauteurPiece + 1)) {
+	                    for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++) {
+	                        if (i % (largeurPiece +1) == largeurPiece/2) {
+	                        	this.grille[i][j] = new Porte(new Point (i,j));
+	                        	} 
+	                        else {
+	                        	this.grille[i][j] = new Mur(new Point (i,j));
+	                        }
+	                    }
+	                }
+	                else {
+	                	for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++) {
+	                	this.grille[i][j] = new Mur(new Point(i,j));
+	                	}
+	                }           
+			 }
+			 else {
+	                for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++) {
+	                    if (i % (largeurPiece + 1) == 0) {
+	                        if (j % (hauteurPiece / 2 + 1) == 0 && i != 0 && i != nbrPiecesX * (largeurPiece + 1)) {
+	                        	this.grille[i][j] = new Porte(new Point(i,j));
+	                        } 
+	                        else {
+	                        	this.grille[i][j] = new Mur(new Point(i,j));
+	                        }
+	                    }
+	                    if (i == nbrPiecesX*(largeurPiece+1)-1) {
+	                    	this.grille[i][j] = new Mur(new Point(i,j));
+	                    }
+	                }
+			 }
+		}
+		// Trouver et placer les nonKitten
+		//À FAIRE : Il faut au moins 1 nonKitten par pièce je crois
+		
+		for (int i = 0; i<nbrNonKitten-1; i++) {
+			Point cellule = this.randomEmptyCell();
+			this.grille[cellule.getX()][cellule.getY()] = new NonKitten();
+		}
+		
+		//Il faut que un des NonKitten soit le teleporteur
+		
+		Point cellule = this.randomEmptyCell();
+		this.grille[cellule.getX()][cellule.getY()] = new Teleporteur(new Point (cellule.getX(),cellule.getY()));
+		
+		//Trouver et placer les clés
+		// À FAIRE : IL NE DOIT Y AVOIR QU'UNE SEULE CLÉ PAR CASE
+		int compteur = 0;
+		while (compteur < nbrPiecesX*nbrPiecesY) {
+			Point celluleCle = this.randomEmptyCell();
+			int posX = celluleCle.getX();
+			int posY = celluleCle.getY();
+			this.grille[posX][posY] = new Cle(new Point (posX,posY));
+			compteur++;
+		}
+		
+		// Kitten
+		// À FAIRE : je sais pas pourquoi mais le kitten change tout le temps de représentation
+		Point positionKitten = this.randomEmptyCell();
+		Kitten kitten = new Kitten("Caramel", positionKitten);
+		this.grille[positionKitten.getX()][positionKitten.getY()] = kitten;
+		
+	}
+		
+		
+	public Case[][] getGrille(){
+		return this.grille;
+	}
+	
+	public void setGrille(Case[][] grille) {
+		this.grille = grille;
+	}
+	
+	
+	public void afficher(Robot robot) {
+	 
+	 for (int j = 0; j < this.grille[0].length; j++) {
+		 StringBuilder horizontal = new StringBuilder();
+		 int posRobotX = robot.getPoint().getX();
+		 int posRobotY = robot.getPoint().getY();
+		 for (int i = 0; i < this.grille.length; i++) {
+			 Case objet = this.grille[i][j];
+			 if (i == posRobotX && j == posRobotY) {
+				 horizontal.append("#");
+			 }
+			 else if (objet != null) {
+				 horizontal.append("" + objet.getRepresentation());
+			 }
+			 else {
+				 horizontal.append(" ");
+			 }
+		 }
+		 System.out.println(horizontal);
+	 }
+	 
+	}
+	
+	//Retourne la position d'une cellule vide
+	
+	public Point randomEmptyCell() {
+		Case[][] grille = this.getGrille();
+		int x=0; int y=0;
+		
+		while(grille[x][y] != null) {
+			x = (int) (Math.random()*grille.length);
+			y= (int) (Math.random()*grille[0].length);
+			}
+		Point point = new Point(x,y);
+		
+		return point;
+	}
+	
+	// Indique si le déplacement du robot est possible
+	public boolean deplacementPossible(Robot robot, int x, int y) {
+		grille = this.getGrille();
+		Case case1 = grille[x][y];
+		return case1.interactionPossible(robot);
+	}
+	
+	// Lance l’interaction entre le Robot robot et la case de la grille sur laquelle il se trouve
+	
+	public void interagir(Robot robot) {
+		Point pos = robot.getPoint();
+		int x = pos.getX(); 
+		int y = pos.getY(); 
+		
+		Case objet = grille[x][y];
+		
+		if (objet.interactionPossible(robot)) {
+			objet.interagir(robot);
+			}
+		}	
 }
-
-
-/**public Point randomEmptyCell() {
- //À COMPLÉTER (Retourne une coordonnée de cellule qui ne contient rien)
- }
-
- public boolean deplacementPossible(Robot robot, int x, int y) {
- À  COMPLÉTER (indique si c’est possible pour le robot robot de marcher sur
- la cellule de coordonnée (x, y)
- }
-
- public void afficher(Robot robot) {
- // À COMPLÉTER affiche la grille dans la console à coups de System.out.println
- }
-
- void interagir(Robot robot) {
- /**Lance l'interaction entre le Robot robot et
- la case de la grille sur laquelle il se trouve*/
-
-
-/**public class Kitten extends Case{
- * public class Cle extends Case
- * public class Porte extends Case
- * public class Mur extends Case
- * public class Teleporteur extends Case
- */
+	

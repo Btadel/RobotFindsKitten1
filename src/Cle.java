@@ -1,5 +1,5 @@
 public class Cle extends Case {
-private Point position;
+	private Point position;
 	
 	public Cle(Point position) {
 		this.position = position;
@@ -12,7 +12,6 @@ private Point position;
 
 	@Override
 	public void interagir(Robot robot) {
-		// Il faut créer un getter et setter nbCles dans la classe Robot
 		int nbCles = robot.getNbCles() + 1;
 		robot.setNbCles(nbCles);
 	} 
