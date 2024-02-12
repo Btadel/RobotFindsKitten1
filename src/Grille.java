@@ -49,17 +49,12 @@ public class Grille {
 			 }
 		}
 		// Trouver et placer les nonKitten
-		//À FAIRE : Il faut au moins 1 nonKitten par pièce je crois
+		// À FAIRE : Il faut au moins 1 nonKitten par pièce je crois
 		
-		for (int i = 0; i<nbrNonKitten-1; i++) {
+		for (int i = 0; i<nbrNonKitten; i++) {
 			Point cellule = this.randomEmptyCell();
 			this.grille[cellule.getX()][cellule.getY()] = new NonKitten();
 		}
-		
-		//Il faut que un des NonKitten soit le teleporteur
-		
-		Point cellule = this.randomEmptyCell();
-		this.grille[cellule.getX()][cellule.getY()] = new Teleporteur(new Point (cellule.getX(),cellule.getY()));
 		
 		//Trouver et placer les clés
 		// À FAIRE : IL NE DOIT Y AVOIR QU'UNE SEULE CLÉ PAR CASE
@@ -71,12 +66,6 @@ public class Grille {
 			this.grille[posX][posY] = new Cle(new Point (posX,posY));
 			compteur++;
 		}
-		
-		// Kitten
-		// À FAIRE : je sais pas pourquoi mais le kitten change tout le temps de représentation
-		Point positionKitten = this.randomEmptyCell();
-		Kitten kitten = new Kitten("Caramel", positionKitten);
-		this.grille[positionKitten.getX()][positionKitten.getY()] = kitten;
 		
 	}
 		
@@ -91,6 +80,10 @@ public class Grille {
 	
 	
 	public void afficher(Robot robot) {
+		
+	 Point robotPosition = robot.getPoint();
+	 int robotCoordonneeX = robotPosition.getX();
+	 int robotCoordonneeY = robotPosition.getY();
 	 
 	 for (int j = 0; j < this.grille[0].length; j++) {
 		 StringBuilder horizontal = new StringBuilder();
@@ -136,7 +129,6 @@ public class Grille {
 	}
 	
 	// Lance l’interaction entre le Robot robot et la case de la grille sur laquelle il se trouve
-	
 	public void interagir(Robot robot) {
 		Point pos = robot.getPoint();
 		int x = pos.getX(); 

@@ -1,36 +1,26 @@
-public class Porte extends Case{
-	
-	// Le booléen état représente si la porte est ouverte ou fermée
-	
+public class Porte extends Case {
 	private Point position;
-	private boolean etat; 
-	
+	private boolean etat; // État de la porte (ouverte ou fermée)
+
 	public Porte(Point position) {
 		this.position = position;
-		this.etat = false;
+		this.etat = false; // La porte est initialement fermée
 	}
-	
+
 	@Override
 	public Boolean interactionPossible(Robot robot) {
-		if (robot.getNbCles() != 0 ) {
-			return true;
-		}
-		else {
-		return false;
-		}
+		return robot.getNbCles() > 0; // Le robot peut interagir avec la porte s'il possède au moins une clé
 	}
 
 	@Override
 	public void interagir(Robot robot) {
-			this.etat = true; 	
-			int nbCles = robot.getNbCles()-1;
-			robot.setNbCles(nbCles);
-		
+		this.etat = true; // La porte est ouverte
+		int nbCles = robot.getNbCles() - 1; // Consommer une clé
+		robot.setNbCles(nbCles);
 	}
-	
+
 	@Override
-    public char getRepresentation() {
-		this.representation = '!';
-        return representation;
-		}
+	public char getRepresentation() {
+		return '!'; // Représentation de la porte dans la grille de jeu
+	}
 }
