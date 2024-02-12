@@ -5,6 +5,7 @@ public class Kitten extends Case{
 	public Kitten(String nom, Point position) {
 		this.position = position;
 		this.nom = nom;
+		super.representation = getRandomSymbole();
 	}
 	
 	public Point getPosition() {
@@ -22,12 +23,6 @@ public class Kitten extends Case{
 
 	@Override
 	public void interagir(Robot robot) {
-		System.out.println("You found kitten! Way to go, robot.\n" + this.nom + "<3" + robot.getNom());
+		System.out.println("You found kitten! Way to go, robot.\n" + this.nom + " <3 " + robot.getNom());
 	}
-	
-	@Override
-    public char getRepresentation() {
-		this.representation = getRandomSymbole();
-        return representation;
-    }
 }
