@@ -13,7 +13,6 @@ public class Grille {
 		this.grille = new Case[nbrPiecesX*(largeurPiece+1)][nbrPiecesY*(hauteurPiece+1)+1];
 
 		// Créer l'objet Grille, qui sera print avec la fonction afficher (plus bas)
-		// !!! Parfois les portes apparaissent au mauvais endroit quand on change hauteur/largeur
 
 		for (int j = 0; j < this.grille[0].length; j++) {
 			if (j % (hauteurPiece + 1) == 0) {

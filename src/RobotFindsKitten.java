@@ -49,9 +49,7 @@ public class RobotFindsKitten {
 			return partieTerminee;
 	}
 	
-	// À FAIRE : - RÉPARÉ !!!! Le robot n'interragit pas avec les objets nonKitten et le teleporteur
-	//			 - RÉPARÉ !!!!! Le robot peut passer genre cinq fois sur la même clés et avoir cinq clés
-	//			 - Fonction à décomposer / optimiser....... beaucoup trop chargée
+	// À FAIRE : 		 - Fonction à décomposer / optimiser....... beaucoup trop chargée
 	
 	public static void deplacerRobot(Robot robot, char entree, Grille grille) {
 		int positionRobotX = robot.getPoint().getX();
@@ -90,8 +88,7 @@ public class RobotFindsKitten {
 			
 			// Print la description du NonKitten (j'ai pas utilisé la fonction de la prof mais ça fonctionne)
 			if (objet instanceof NonKitten) {
-				String description = NonKitten.descriptions[(int) (Math.random()*(NonKitten.descriptions).length)+1];
-				System.out.println(description);
+				System.out.println(((NonKitten) objet).getDescriptive());
 				}
 			robot.setPoint(nouvellePos);
 			}

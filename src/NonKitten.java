@@ -1,5 +1,5 @@
 public class NonKitten extends Case {
-    private String descriptive;
+    private final String descriptive;
     private int nextDescription = -1;
     public static String[] descriptions = new String[]{
             "I pity the fool who mistakes me for kitten!\", sez Mr. T.",
@@ -413,17 +413,22 @@ public class NonKitten extends Case {
     public NonKitten(){
         super.representation = getRandomSymbole();
 
-        if(nextDescription == descriptions.length) {
-            nextDescription = 0;
+        //**if(nextDescription == descriptions.length) {
+       /*    nextDescription = 0;
         }
         else {
             nextDescription++;
         }
-        this.descriptive = descriptions[nextDescription];
+        this.descriptive = descriptions[nextDescription];*/
+        
+        String description = descriptions[(int) (Math.random()*descriptions.length)+1];
+		this.descriptive = (description);
+   
     }
     public String getDescriptive(){
         return this.descriptive;
     }
+    
 
     @Override
     //The robot is always able to interact with an NonKitten item
