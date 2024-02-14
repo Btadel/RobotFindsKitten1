@@ -1,8 +1,8 @@
 public class Cle extends Case {
-	private Point position;
+	private boolean utilisation;
 	
-	public Cle(Point position) {
-		this.position = position;
+	public Cle() {
+		this.utilisation = false;
 	}
 
 	@Override
@@ -12,14 +12,32 @@ public class Cle extends Case {
 
 	@Override
 	public void interagir(Robot robot) {
+		if (this.utilisation == false) {
 		int nbCles = robot.getNbCles() + 1;
 		robot.setNbCles(nbCles);
+		this.setUtilisation(true);
+		}
+		else {
+			return;
+		}
 	} 
 	
 	@Override
     public char getRepresentation() {
-		this.representation = '\'';
+		if (this.utilisation == true) {
+			this.representation = ' ';
+		} 
+		else {
+			this.representation = '\'';
+		}
         return representation;
     }
 	
+	public boolean getUtilisation() {
+		return this.utilisation;
+	}
+	
+	public void setUtilisation(boolean utilise) {
+		this.utilisation = utilise;
+	}
 }

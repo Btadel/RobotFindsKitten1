@@ -1,8 +1,6 @@
 public class Mur extends Case {
-	Point position;
-	
-	public Mur(Point position) {
-		this.position = position;
+	public Mur() {
+		this.representation = '%';
 	}
 
 	@Override
@@ -13,12 +11,6 @@ public class Mur extends Case {
 	@Override
 	public void interagir(Robot robot) {
 		return;	
-	}
-	
-	@Override
-    public char getRepresentation() {
-		this.representation = '%';
-        return representation;
 	}
 
 }
