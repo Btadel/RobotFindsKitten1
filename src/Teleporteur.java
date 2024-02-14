@@ -1,13 +1,7 @@
 public class Teleporteur extends Case{
 	
-	/* À faire : - fonction qui permet de se téléporter à n'importe quel endroit dans la grille
-	 * 
-	 */
-	
-	private Point position;
-	
-	public Teleporteur(Point position) {
-		this.position = position;
+	public Teleporteur() {
+		super.representation = getRandomSymbole();
 	}
 
 	@Override
@@ -18,12 +12,6 @@ public class Teleporteur extends Case{
 	@Override
 	public void interagir(Robot robot) {
 		robot.setTeleporteur(true);
-	}
-	
-	@Override
-    public char getRepresentation() {
-		this.representation = getRandomSymbole(); 
-		return representation;
 	}
 
 }
