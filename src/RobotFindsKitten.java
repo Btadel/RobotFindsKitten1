@@ -4,6 +4,7 @@ public class RobotFindsKitten {
 
 	public static void main(String[] args) {
 		
+		// À FAIRE : - le javadoc, les commentaires, optimiser
 		
 		// Faire apparaître le message de début du jeu 
 		
