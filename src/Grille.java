@@ -63,7 +63,7 @@ public class Grille {
 		this.grille[cellule.getX()][cellule.getY()] = new Teleporteur();
 
 		//Trouver et placer les clés
-		// update : il n'y a qu'une seule clé par case
+		// À FAIRE : Parfois une clé print dans le mur
 		for (int j=0; j<nbrPiecesY; j++) {
 			for(int i=0; i<nbrPiecesX; i++) {
 				int positionCleX = (int)(Math.random()*(largeurPiece))+(largeurPiece+1)*(i)+1;
