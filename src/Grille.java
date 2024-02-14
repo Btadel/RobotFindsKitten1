@@ -13,7 +13,6 @@ public class Grille {
 		this.grille = new Case[nbrPiecesX*(largeurPiece+1)][nbrPiecesY*(hauteurPiece+1)+1];
 
 		// Créer l'objet Grille, qui sera print avec la fonction afficher (plus bas)
-		// !!! Parfois les portes apparaissent au mauvais endroit quand on change hauteur/largeur
 
 		for (int j = 0; j < this.grille[0].length; j++) {
 			if (j % (hauteurPiece + 1) == 0) {
@@ -21,16 +20,16 @@ public class Grille {
 					double i1 = (double) largeurPiece / 2;{
 					for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++)
 						if (i % (largeurPiece +1) == Math.ceil(i1)) {
-							this.grille[i][j] = new Porte(new Point (i,j));
+							this.grille[i][j] = new Porte();
 						}
 						else {
-							this.grille[i][j] = new Mur(new Point (i,j));
+							this.grille[i][j] = new Mur();
 						}
 					}
 				}
 				else {
 					for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++) {
-						this.grille[i][j] = new Mur(new Point(i,j));
+						this.grille[i][j] = new Mur();
 					}
 				}
 			}
@@ -38,14 +37,14 @@ public class Grille {
 				for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++) {
 					if (i % (largeurPiece + 1) == 0) {
 						if (j % (hauteurPiece / 2 + 1) == 0 && i != 0 && i != nbrPiecesX * (largeurPiece + 1)) {
-							this.grille[i][j] = new Porte(new Point(i,j));
+							this.grille[i][j] = new Porte();
 						}
 						else {
-							this.grille[i][j] = new Mur(new Point(i,j));
+							this.grille[i][j] = new Mur();
 						}
 					}
 					if (i == nbrPiecesX*(largeurPiece+1)-1) {
-						this.grille[i][j] = new Mur(new Point(i,j));
+						this.grille[i][j] = new Mur();
 					}
 				}
 			}
@@ -61,21 +60,20 @@ public class Grille {
 		//Il faut que un des NonKitten soit le teleporteur
 
 		Point cellule = this.randomEmptyCell();
-		this.grille[cellule.getX()][cellule.getY()] = new Teleporteur(new Point (cellule.getX(),cellule.getY()));
+		this.grille[cellule.getX()][cellule.getY()] = new Teleporteur();
 
 		//Trouver et placer les clés
-		// À FAIRE : IL NE DOIT Y AVOIR QU'UNE SEULE CLÉ PAR CASE
-		int compteur = 0;
-		while (compteur < nbrPiecesX*nbrPiecesY) {
-			Point celluleCle = this.randomEmptyCell();
-			int posX = celluleCle.getX();
-			int posY = celluleCle.getY();
-			this.grille[posX][posY] = new Cle(new Point (posX,posY));
-			compteur++;
+		// update : il n'y a qu'une seule clé par case
+		for (int j=0; j<nbrPiecesY; j++) {
+			for(int i=0; i<nbrPiecesX; i++) {
+				int positionCleX = (int)(Math.random()*(largeurPiece))+(largeurPiece+1)*(i)+1;
+				int positionCleY = (int)(Math.random()*(hauteurPiece))+(hauteurPiece+1)*(j)+1;
+				
+				this.grille[positionCleX][positionCleY] = new Cle();
+			}
 		}
-
+		
 		// Kitten
-		// À FAIRE : je sais pas pourquoi mais le kitten change tout le temps de représentation
 		Point positionKitten = this.randomEmptyCell();
 		Kitten kitten = new Kitten("Caramel", positionKitten);
 		this.grille[positionKitten.getX()][positionKitten.getY()] = kitten;
@@ -91,18 +89,21 @@ public class Grille {
 		this.grille = grille;
 	}
 
-
 	public void afficher(Robot robot) {
 
 		for (int j = 0; j < this.grille[0].length; j++) {
 			StringBuilder horizontal = new StringBuilder();
+			
 			int posRobotX = robot.getPoint().getX();
 			int posRobotY = robot.getPoint().getY();
+			
 			for (int i = 0; i < this.grille.length; i++) {
 				Case objet = this.grille[i][j];
+				
 				if (i == posRobotX && j == posRobotY) {
 					horizontal.append("#");
 				}
+				
 				else if (objet != null) {
 					horizontal.append("" + objet.getRepresentation());
 				}

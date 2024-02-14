@@ -1,8 +1,8 @@
 public class Cle extends Case {
-	private Point position;
-
-	public Cle(Point position) {
-		this.position = position;
+	private boolean utilisation;
+	
+	public Cle() {
+		this.utilisation = false;
 	}
 
 	@Override
@@ -12,22 +12,32 @@ public class Cle extends Case {
 
 	@Override
 	public void interagir(Robot robot) {
+		if (this.utilisation == false) {
 		int nbCles = robot.getNbCles() + 1;
 		robot.setNbCles(nbCles);
-	}
-
+		this.setUtilisation(true);
+		}
+		else {
+			return;
+		}
+	} 
+	
 	@Override
-	public char getRepresentation() {
-		return '\''; // Représentation de la clé dans la grille de jeu
+    public char getRepresentation() {
+		if (this.utilisation == true) {
+			this.representation = ' ';
+		} 
+		else {
+			this.representation = '\'';
+		}
+        return representation;
+    }
+	
+	public boolean getUtilisation() {
+		return this.utilisation;
 	}
-
-	// Méthodes pour obtenir et modifier la position de la clé
-	public Point getPosition() {
-		return position;
-	}
-
-	public void setPosition(Point position) {
-		this.position = position;
+	
+	public void setUtilisation(boolean utilise) {
+		this.utilisation = utilise;
 	}
 }
-

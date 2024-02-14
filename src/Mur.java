@@ -1,22 +1,16 @@
 public class Mur extends Case {
-	private Point position;
-
-	public Mur(Point position) {
-		this.position = position;
+	public Mur() {
+		this.representation = '%';
 	}
 
 	@Override
 	public Boolean interactionPossible(Robot robot) {
-		return false; // Le robot ne peut pas interagir avec un mur
+		return false;
 	}
 
 	@Override
 	public void interagir(Robot robot) {
-		// Rien ne se passe lorsque le robot interagit avec un mur
+		return;	
 	}
 
-	@Override
-	public char getRepresentation() {
-		return '%'; // Représentation du mur dans la grille de jeu
-	}
 }
