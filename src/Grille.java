@@ -18,13 +18,13 @@ public class Grille {
 			if (j % (hauteurPiece + 1) == 0) {
 				if (j != 0 && j != nbrPiecesY * (hauteurPiece + 1)) {
 					double i1 = (double) largeurPiece / 2;{
-					for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++)
-						if (i % (largeurPiece +1) == Math.ceil(i1)) {
-							this.grille[i][j] = new Porte();
-						}
-						else {
-							this.grille[i][j] = new Mur();
-						}
+						for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++)
+							if (i % (largeurPiece +1) == Math.ceil(i1)) {
+								this.grille[i][j] = new Porte();
+							}
+							else {
+								this.grille[i][j] = new Mur();
+							}
 					}
 				}
 				else {
@@ -63,16 +63,21 @@ public class Grille {
 		this.grille[cellule.getX()][cellule.getY()] = new Teleporteur();
 
 		//Trouver et placer les clés
-		// À FAIRE : Parfois une clé print dans le mur
-		for (int j=0; j<nbrPiecesY; j++) {
-			for(int i=0; i<nbrPiecesX; i++) {
-				int positionCleX = (int)(Math.random()*(largeurPiece))+(largeurPiece+1)*(i)+1;
-				int positionCleY = (int)(Math.random()*(hauteurPiece))+(hauteurPiece+1)*(j)+1;
-				
+		for (int j = 0; j < nbrPiecesY; j++) {
+			for (int i = 0; i < nbrPiecesX; i++) {
+				int positionCleX, positionCleY;
+
+				// cherche d'une position pour la clé et tant que c'est pas un emptycell la boucle continue
+				do {
+					positionCleX = (int) (Math.random() * (largeurPiece)) + (largeurPiece + 1) * (i) + 1;
+					positionCleY = (int) (Math.random() * (hauteurPiece)) + (hauteurPiece + 1) * (j) + 1;
+				} while ((this.grille[positionCleX][positionCleY] instanceof Mur));
+
+				// Place  la clé à la position valide
 				this.grille[positionCleX][positionCleY] = new Cle();
 			}
 		}
-		
+
 		// Kitten
 		Point positionKitten = this.randomEmptyCell();
 		Kitten kitten = new Kitten("Caramel", positionKitten);
@@ -93,17 +98,17 @@ public class Grille {
 
 		for (int j = 0; j < this.grille[0].length; j++) {
 			StringBuilder horizontal = new StringBuilder();
-			
+
 			int posRobotX = robot.getPoint().getX();
 			int posRobotY = robot.getPoint().getY();
-			
+
 			for (int i = 0; i < this.grille.length; i++) {
 				Case objet = this.grille[i][j];
-				
+
 				if (i == posRobotX && j == posRobotY) {
 					horizontal.append("#");
 				}
-				
+
 				else if (objet != null) {
 					horizontal.append("" + objet.getRepresentation());
 				}

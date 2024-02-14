@@ -12,7 +12,7 @@ public class Cle extends Case {
 
 	@Override
 	public void interagir(Robot robot) {
-		if (this.utilisation == false) {
+		if (!this.utilisation) {
 		int nbCles = robot.getNbCles() + 1;
 		robot.setNbCles(nbCles);
 		this.setUtilisation(true);
@@ -24,7 +24,7 @@ public class Cle extends Case {
 	
 	@Override
     public char getRepresentation() {
-		if (this.utilisation == true) {
+		if (this.utilisation) {
 			this.representation = ' ';
 		} 
 		else {
