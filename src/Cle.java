@@ -1,5 +1,5 @@
 /**
- * Classe qui hérite de 'Case'. Classe qui représente les clés et leurs attributs
+ * Classe qui hérite de 'Case'. Représente les clés et leurs attributs.
  *
  * @author Adèle Pomerleau
  * @author Adel Tayeb Boudia
@@ -20,7 +20,7 @@ public class Cle extends Case {
 	}
 
 	/**
-	 * Indique que l'intéraction avec le robot est possible
+	 * Indique que l'intéraction avec le robot est possible.
 	 * @param robot Objet
 	 * @return True
 	 */
@@ -30,7 +30,7 @@ public class Cle extends Case {
 	}
 
 	/**
-	 * Fonction qui détermine si le robot peut interagir avec la clé
+	 * Fonction qui détermine si le robot peut interagir avec la clé.
 	 * @param robot Objet
 	 */
 	@Override
@@ -43,7 +43,7 @@ public class Cle extends Case {
 			utilisation = true;
 		}
 
-		// Si la clé a été utilisée, aucune interaction est permise
+		// Si la clé a été utilisée, aucune interaction est permise.
 		else {
 			return;
 		}
