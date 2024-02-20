@@ -5,7 +5,7 @@
  * <p>
  *     Modifications apportées par:
  * <p>
- * @author Adèle Pmerleau
+ * @author Adèle Pomerleau
  * @author Adel Tayeb Boudia
  * @author Christelle Semaan
  */
@@ -418,7 +418,7 @@ public class NonKitten extends Case {
             "The intermission from a 1930s silent movie.",
             "It's an inverted billiard ball!",
             "The spectre of Sherlock Holmes wills you onwards.",
-            "It's Adel, Christelle and Adèle"
+            "It's Adel, Christelle and Adele"
     };
 
     /**
@@ -435,6 +435,8 @@ public class NonKitten extends Case {
 
     /**
      * Getter qui fournit l'informations sur le non-kitten rencontré dans le jeu.
+     * 
+     * @return descriptive Un string représentant la description de l'objet
      */
     public String getDescriptive(){
         return this.descriptive;
@@ -442,8 +444,8 @@ public class NonKitten extends Case {
 
 
     /**
-     * Le robot peut toujours interragir avec un NonKitten
-     * @param robot Objet qui intéragit avec les non-kittens
+     * Le robot peut toujours interagir avec un NonKitten
+     * @param robot Objet qui interagit avec les non-kittens
      * @return True
      */
     @Override

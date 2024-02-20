@@ -1,7 +1,7 @@
 /**
- * classe qui hérite de 'Case'
+ * Classe qui hérite de 'Case'. L'objet Kitten représente le Kitten et ses attributs
  *
- * @author Adèle Pmerleau
+ * @author Adèle Pomerleau
  * @author Adel Tayeb Boudia
  * @author Christelle Semaan
  */
@@ -12,7 +12,7 @@ public class Kitten extends Case{
 	private String nom;
 
 	/**
-	 * Initialise le Kitten avec un nom et un symbol aléatoire.
+	 * Constructeur qui initialise le Kitten avec un nom et un symbole aléatoire.
 	 *
 	 * @param nom Le nom du kitten
 	 */
@@ -22,7 +22,7 @@ public class Kitten extends Case{
 	}
 
 	/**
-	 * Peut interragir avec le robot
+	 * Peut interagir avec le robot
 	 *
 	 * @param robot
 	 */

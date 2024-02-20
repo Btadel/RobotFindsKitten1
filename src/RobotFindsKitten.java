@@ -11,11 +11,11 @@ import java.util.Scanner;
 public class RobotFindsKitten {
 	/**
 	 * La fonction suivante est la fonction principale du jeu. Elle est exécutée lorsque le programme débute.
-	 * Le jeu consiste en une grille de murs ('%') et de portes ('!') et, de clés ( ' ' ') et de 
+	 * Le jeu consiste en une grille de murs ('%'), de portes ('!'), de clés ( ' ' ') et de 
 	 * caractères ASCII qui représentent des objets aléatoires. L'utilisateur 
 	 * déplace un robot ('#') afin de trouver le Kitten caché parmis les objets. 
 	 * 
-	 * @param args
+	 * @param args Les arguments
 	 */
 	public static void main(String[] args) {
 
@@ -24,14 +24,13 @@ public class RobotFindsKitten {
 
 
 		/* Initialiser un objet Grille qui représente la grille de jeu. Son constructeur prend cinq paramètres :
-		* le nombre de pièces horizontales et de pièces verticales, la largeur et la longueur des pièces, ainsi 
+		* le nombre de pièces horizontales et verticales, la largeur et la longueur des pièces, ainsi 
 		* que le nombre de NonKitten qui se trouvent dans le jeu (incluant le téléporteur).
 		*/
 		Grille grilleJeu = new Grille(5,2,11,5,20);
 
 		// Choisi et place le robot à une position de départ aléatoire dans la grille de jeu.
 		Point depart = grilleJeu.randomEmptyCell();
-
 		Robot robot = new Robot("R.O.B", depart, 0, false);
 
 		// Premier affichage du jeu 
@@ -52,7 +51,7 @@ public class RobotFindsKitten {
 				grilleJeu.afficher(robot);                    // Montre l'état de la grille mis à jour 
 															  // avec la nouvelle position du robot
 				
-				// Print le nom du robot, le nombre de clef qu'il a, et l'état du téléporteur.
+				// Affiche le nom du robot, le nombre de clef qu'il a, et l'état du téléporteur.
 				System.out.println(robot.getNom() + "[" + robot.getNbCles() + "]" + etatTeleporteur(robot) + ">");
 			}
 		}
@@ -63,7 +62,7 @@ public class RobotFindsKitten {
 	 * La méthode fin du jeu détermine si le jeu est gagné.
 	 * @param grille Objet Grille qui représente la grille du jeu.
 	 * @param robot  Objet Robot qui représente le robot et ses attributs.
-	 * @return True si la partie est terminée, False si la partie est en cours.
+	 * @return True si la partie est terminée, False si la partie est encore en cours.
 	 */
 	public static boolean finDuJeu(Grille grilleJeu, Robot robot) {
 		// Récupérer les coordonnées x et y de la position du robot sur la grille en appelant les
@@ -87,7 +86,7 @@ public class RobotFindsKitten {
 	 * 
 	 * @param robot Objet qui représentant le robot à déplacer.
 	 * @param nouvellePos un Point représentant la nouvelle position du robot
-	 * @param grille Un objet représentant la grille du jeu.
+	 * @param grilleJeu Un objet représentant la grille du jeu.
 	 */
 	public static void deplacerRobot(Robot robot, Point nouvellePos, Grille grilleJeu) {
 		// Retourne les coordonnées x et y de la nouvelle position pour le robot dans le jeu.
@@ -97,9 +96,10 @@ public class RobotFindsKitten {
 		Case[][] grille = grilleJeu.getGrille();
 
 		/* Le robot interagit avec un objet si les deux sont à la même position.
-		La Case objet est l'objet se trouvant sur cette case de la grille*/
+		La variable objet est l'objet (de type général case) se trouvant sur cette case de la grille*/
 		Case objet = grille[nouvellePosX][nouvellePosY];
 
+		// Interagir avec le robot si c'est possible
 		if (objet != null && objet.interactionPossible(robot) != false) {
 			objet.interagir(robot);
 
@@ -108,13 +108,14 @@ public class RobotFindsKitten {
 				System.out.println(((NonKitten) objet).getDescriptive());
 			}
 			
-			/* Si l'objet est une clé, une porte ou un téléporteur, alors il disparaitra après l'interaction
+			/* Si l'objet est une clé, une porte ouverte ou un téléporteur, alors il disparaitra après l'interaction
 			(devient une case vide) */
-			if (objet instanceof Porte && ((Porte) objet).getEtat() || objet instanceof Cle || objet instanceof Teleporteur) {
+			if ((objet instanceof Porte && ((Porte) objet).getEtat()) || objet instanceof Cle || objet instanceof Teleporteur) {
 				grille[nouvellePosX][nouvellePosY] = null;
 				grilleJeu.setGrille(grille);
 			}
 			
+			// Changer la position du robot (son attribut point)
 			robot.setPoint(nouvellePos);
 		}
 		
@@ -135,18 +136,18 @@ public class RobotFindsKitten {
 	 * @param entree Un caractère représentant la direction dans laquelle le robot doit se déplacer
 	 *               ("a" pour la gauche, "w" pour le haut, "s" pour le bas, "d" pour la droite,
 	 *               "t" pour la téléportation).
-	 * @param grille Un objet représentant la grille du jeu.
-	 * @return Point nouvellePos la position du robot après l'entrée de l'utilisateur.
+	 * @param grilleJeu Un objet représentant la grille du jeu.
+	 * @return nouvellePos un point représentant la position du robot après l'entrée de l'utilisateur.
 	 */
 	public static Point nouvellePosition(Robot robot, char entree, Grille grilleJeu) {
-		// Calcule une position du robot basée sur la saisie 'entree'.
+		// Chercher la position en X et en Y du robot avec les getters
 				int positionRobotX = robot.getPoint().getX();
 				int positionRobotY = robot.getPoint().getY();
 				
 				// Va chercher l'attribut Teleporteur du robot au moment de l'entrée.
 				boolean teleporteur = robot.getTeleporteur();
 				
-				// Nouvelle position du robot
+				// nouvellePos est la nouvelle position du robot
 				Point nouvellePos = null;
 				
 				// Entrées possibles et les positions qui en résultent
@@ -163,7 +164,7 @@ public class RobotFindsKitten {
 					nouvellePos = new Point(positionRobotX+1,positionRobotY);
 				}
 				
-				/* Si l'utilisateur entre 't' et qu'il possède un téléporteur, il se retouvera a une position aléatoire 
+				/* Si l'utilisateur entre 't' et qu'il possède un téléporteur, il se retouvera à une position aléatoire 
 				sur la grille */
 				
 				else if (entree == 't' && teleporteur){
@@ -175,6 +176,8 @@ public class RobotFindsKitten {
 				// Vérifie la validité de la saisie.
 				else if (entree != 'a' || entree != 's' || entree != 'd' || entree !='w' || 
 						(entree == 't' && teleporteur == false)) {
+					
+					// Si l'entrée n'est pas valide, il reste au même endroit
 					nouvellePos = robot.getPoint();
 				}
 				
@@ -185,7 +188,7 @@ public class RobotFindsKitten {
 	/**
 	 * La méthode etatTeleporteur vérifie si le robot possède un téléporteur.
 	 * @param robot Objet comme saisie.
-	 * @return "T" pour un 'etat' True. Le téléporteur a été trouvé.
+	 * @return "T" Le string a afficher pour un 'etat' True. Le téléporteur a été trouvé.
 	 * <p>
 	 * "" pour un 'etat' False. Le téléporteur n'a pas été trouvé.
 	 */

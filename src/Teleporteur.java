@@ -15,8 +15,8 @@ public class Teleporteur extends Case{
 	}
 
 	/**
-	 * Le robot peut toujours interragir avec le téléporteur.
-	 * @param robot Objet
+	 * Le robot peut toujours interagir avec le téléporteur.
+	 * @param robot Objet qui représente le robot
 	 * @return True
 	 */
 	@Override

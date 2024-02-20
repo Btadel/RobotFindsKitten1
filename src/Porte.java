@@ -1,7 +1,7 @@
 /**
  * classe qui hérite de 'Case'
  *
- * @author Adèle Pmerleau
+ * @author Adèle Pomerleau
  * @author Adel Tayeb Boudia
  * @author Christelle Semaan
  */
@@ -13,8 +13,8 @@ public class Porte extends Case{
 	private boolean etat;
 
 	/**
-	 * Génère une porte initialement fermée.
-	 * Défini par le symbole '!'.
+	 * Constructeur qui génère une porte initialement fermée et
+	 * définie par le symbole '!'.
 	 */
 	public Porte() {
 		this.etat = false;
@@ -22,7 +22,7 @@ public class Porte extends Case{
 	}
 
 	/**
-	 * Le robot ne peut interragir avec une porte que s'il a une clé ou si la porte est déjà ouverte.
+	 * Le robot ne peut interagir avec une porte que s'il a une clé ou si la porte est déjà ouverte.
 	 * @param robot Objet qui intéragit avec la porte.
 	 * @return True si une intéraction est possible, sinon False.
 	 */
@@ -60,7 +60,9 @@ public class Porte extends Case{
 	}
 
 	/**
-	 * Indique si la porte est fermé ou ouverte.
+	 * Indique si la porte est fermée ou ouverte
+	 * 
+	 * @return etat un booleen représentant l'état ouvert ou fermé de la porte
 	 */
 	public boolean getEtat() {
 		return this.etat;

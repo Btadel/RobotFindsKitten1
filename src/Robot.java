@@ -1,7 +1,7 @@
 /**
  * Représentation du robot
  *
- * @author Adèle Pmerleau
+ * @author Adèle Pomerleau
  * @author Adel Tayeb Boudia
  * @author Christelle Semaan
  */
@@ -32,6 +32,8 @@ public class Robot {
 	// Getters et setters pour chaque attribut du robot
 	/**
 	 * Getter qui récupère la valeur du nom
+	 * 
+	 * @return nom un string contenant le nom du robot
 	 */
 	public String getNom() {
 		return this.nom;
@@ -63,7 +65,9 @@ public class Robot {
 	}
 
 	/**
-	 * Getteur qui récupère la valeur int du nombre de clé en possesion du robot.
+	 * Getteur qui récupère la valeur int du nombre de clé en possession du robot.
+	 * 
+	 * @return nbCles un int indiquant le nombre de clés du robot
 	 */
 	public int getNbCles() {
 		return this.nbCles;
@@ -80,6 +84,8 @@ public class Robot {
 
 	/**
 	 * Getter qui récupère si oui ou non le robot à renconteé un télépoteur.
+	 * 
+	 * @return teleporteur le booleen indiquant si le robot possède ou non un teleporteur
 	 */
 	public boolean getTeleporteur() {
 		return this.teleporteur;

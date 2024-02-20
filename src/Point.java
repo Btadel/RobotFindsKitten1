@@ -2,11 +2,11 @@ import java.util.*;
 /**
  * représentation d'un point (x,y)
  *
- * @author Profresseur
+ * @author Professeur
  * <p>
  *     Modifications apportées par:
  * <p>
- * @author Adèle Pmerleau
+ * @author Adèle Pomerleau
  * @author Adel Tayeb Boudia
  * @author Christelle Semaan
  */
