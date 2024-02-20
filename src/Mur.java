@@ -19,6 +19,7 @@ public class Mur extends Case {
 	 * Ils ne peuvent pas interagir avec le robot.
 	 *
 	 * @param robot Objet qui n'interagit pas avec le mur.
+	 * @return false car les deux objets ne peuvent pas interagir
 	 */
 	@Override
 	public Boolean interactionPossible(Robot robot) {

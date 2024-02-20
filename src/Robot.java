@@ -49,6 +49,8 @@ public class Robot {
 
 	/**
 	 * Getter qui récupère la valeur de la position
+	 * 
+	 *@return point La position du robot
 	 */
 	public Point getPoint() {
 		return this.point;

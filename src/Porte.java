@@ -1,5 +1,5 @@
 /**
- * Classe qui hérite de 'Case'
+ * Classe qui hérite de 'Case' et qui représente les portes et leurs attributs
  *
  * @author Adèle Pomerleau
  * @author Adel Tayeb Boudia

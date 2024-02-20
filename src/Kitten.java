@@ -7,7 +7,7 @@
  */
 public class Kitten extends Case{
 
-	/* Les objets de type kitten prennent un seul type de plus que ceux de type case : un string représentant le nom 
+	/* Les objets de type kitten prennent un seul attribut de plus que ceux de type case : un string représentant le nom 
 	du Kitten*/
 	private String nom;
 
@@ -25,6 +25,7 @@ public class Kitten extends Case{
 	 * Peut interagir avec le robot
 	 *
 	 * @param robot objet qui pourrait interagir avec le kitten.
+	 * @return true car l'interaction est possible
 	 */
 	@Override
 	public Boolean interactionPossible(Robot robot) {

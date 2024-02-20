@@ -50,7 +50,7 @@ public class Cle extends Case {
 	}
 
 	/**
-	 * Getter qui permet de savoir si la clef a été utilisé ou non.
+	 * Getter qui permet de savoir si la clef a été utilisée ou non.
 	 * @return La valeur d'utilisation pour les clefs.
 	 */
 	public boolean getUtilisation() {
@@ -58,7 +58,7 @@ public class Cle extends Case {
 	}
 
 	/**
-	 * Setter qui met à jour la valeur de d'utilisation d'une clef.
+	 * Setter qui met à jour la valeur de l'utilisation d'une clef.
 	 */
 	public void setUtilisation(boolean utilise) {
 		this.utilisation = utilise;

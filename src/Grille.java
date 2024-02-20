@@ -46,7 +46,7 @@ public class Grille {
 					}
 				}
 				else {
-					for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++) {	// Si c'est le premier ou dernier mur horizontal :mettre un mur complet
+					for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++) {	// Si c'est le premier ou dernier mur horizontal : mettre un mur complet
 						grille[i][j] = new Mur();				             
 					}
 				}
@@ -87,7 +87,7 @@ public class Grille {
 			for (int i = 0; i < nbrPiecesX; i++) {
 				int positionCleX, positionCleY;
 
-				// Cherche d'une position pour la clé et tant que c'est pas une case vide la boucle continue
+				// Chercher une position pour la clé.Tant que ce n'est pas une case vide, la boucle continue.
 				do {
 					positionCleX = (int) (Math.random() * (largeurPiece)) + (largeurPiece + 1) * (i) + 1;
 					positionCleY = (int) (Math.random() * (hauteurPiece)) + (hauteurPiece + 1) * (j) + 1;
