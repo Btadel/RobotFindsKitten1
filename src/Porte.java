@@ -7,6 +7,7 @@ public class Porte extends Case{
 	
 	public Porte() {
 		this.etat = false;
+		this.representation = '!';
 	}
 	
 	@Override
@@ -38,16 +39,8 @@ public class Porte extends Case{
 		
 	}
 	
-	@Override
-    public char getRepresentation() {
-		// La porte sera représentée par un '!' si elle est fermé et par un espace vide si elle est ouverte
-		if (this.etat == false) {
-		this.representation = '!';
-        return representation;
-		}
-		else {
-			this.representation = ' ';
-			return representation;
-		}
+	public boolean getEtat() {
+		return this.etat;
 	}
+	
 }

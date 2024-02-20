@@ -89,22 +89,32 @@ public class RobotFindsKitten {
 	 * @param nouvellePos un Point représentant la nouvelle position du robot
 	 * @param grille Un objet représentant la grille du jeu.
 	 */
-	public static void deplacerRobot(Robot robot, Point nouvellePos, Grille grille) {
+	public static void deplacerRobot(Robot robot, Point nouvellePos, Grille grilleJeu) {
 		// Retourne les coordonnées x et y de la nouvelle position pour le robot dans le jeu.
 		int nouvellePosX = nouvellePos.getX();
 		int nouvellePosY = nouvellePos.getY();
+		
+		Case[][] grille = grilleJeu.getGrille();
 
 		/* Le robot interagit avec un objet si les deux sont à la même position.
 		La Case objet est l'objet se trouvant sur cette case de la grille*/
-		Case objet = grille.getGrille()[nouvellePosX][nouvellePosY];
+		Case objet = grille[nouvellePosX][nouvellePosY];
 
 		if (objet != null && objet.interactionPossible(robot) != false) {
 			objet.interagir(robot);
 
-			// Print la description du NonKitten dans le cas où objet en est un
+			// Affiche la description du NonKitten dans le cas où objet en est un
 			if (objet instanceof NonKitten) {
 				System.out.println(((NonKitten) objet).getDescriptive());
 			}
+			
+			/* Si l'objet est une clé, une porte ou un téléporteur, alors il disparaitra après l'interaction
+			(devient une case vide) */
+			if (objet instanceof Porte && ((Porte) objet).getEtat() || objet instanceof Cle || objet instanceof Teleporteur) {
+				grille[nouvellePosX][nouvellePosY] = null;
+				grilleJeu.setGrille(grille);
+			}
+			
 			robot.setPoint(nouvellePos);
 		}
 		
@@ -160,11 +170,6 @@ public class RobotFindsKitten {
 					// La nouvelle position du robot est une case aléatoire sur la grille
 					Point teleportation =  grilleJeu.randomEmptyCell();
 					nouvellePos = teleportation;
-					
-					// L'ancienne case du téléporteur devient vide
-					Case[][] grille = grilleJeu.getGrille();
-					grille[robot.getPoint().getX()][robot.getPoint().getY()] = null;
-					grilleJeu.setGrille(grille);
 				}
 				
 				// Vérifie la validité de la saisie.

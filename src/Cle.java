@@ -6,6 +6,7 @@ public class Cle extends Case {
 	
 	public Cle() {
 		this.utilisation = false;
+		this.representation = '\'';
 	}
 
 	@Override
@@ -29,19 +30,6 @@ public class Cle extends Case {
 			return;
 		}
 	} 
-	
-	@Override
-    public char getRepresentation() {
-		
-		// Si la clé a été utilisée, elle n'apparait plus sur la grille
-		if (utilisation) {
-			representation = ' ';
-		} 
-		else {
-			representation = '\'';
-		}
-        return representation;
-    }
 	
 	public boolean getUtilisation() {
 		return this.utilisation;
