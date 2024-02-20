@@ -26,35 +26,35 @@ public class Grille {
 				  int hauteurPiece, int nbrNonKitten) {
 		this.grille = new Case[nbrPiecesX*(largeurPiece+1)][nbrPiecesY*(hauteurPiece+1)+1];
 
-		/* Créer l'objet Grille, qui sera affichée grâce à la méthode afficher ci-dessous
-		 La boucle suivante initialise chacun des objets de la grille */
+		/* Créer l'objet Grille, qui sera affichée grâce à la méthode afficher ci-dessous.
+		 La boucle suivante initialise chacun des objets de la grille. */
 		
-		// Boucle qui initialise et place les murs et les portes
-		for (int j = 0; j < grille[0].length; j++) {						// Itérer sur chaque ligne horizontale
-			if (j % (hauteurPiece + 1) == 0) {								// Se trouve à la hauteur d'un mur horizontal
-				if (j != 0 && j != nbrPiecesY * (hauteurPiece + 1)) {		// Vérifier que ce n'est pas le premier ou dernier
-																			// mur
+		// Boucle qui initialise et place les murs et les portes.
+		for (int j = 0; j < grille[0].length; j++) {					        // Itérer sur chaque ligne horizontale
+			if (j % (hauteurPiece + 1) == 0) {					        // Se trouve à la hauteur d'un mur horizontal
+				if (j != 0 && j != nbrPiecesY * (hauteurPiece + 1)) {		        // Vérifier que ce n'est pas le premier ou dernier
+												        // mur
 					double i1 = (double) largeurPiece / 2;{
-					for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++) // Si on se trouve à la moitié du mur : mettre
-																			  // une porte
+					for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++)       // Si on se trouve à la moitié du mur : mettre
+												        // une porte
 						if (i % (largeurPiece +1) == Math.ceil(i1)) {
 							grille[i][j] = new Porte();
 						}
-						else {												 // Sinon mettre un mur
+						else {						        // Sinon mettre un mur
 							grille[i][j] = new Mur();
 						}
 					}
 				}
 				else {
 					for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++) {	// Si c'est le premier ou dernier mur horizontal :
-						grille[i][j] = new Mur();								// mettre un mur complet
+						grille[i][j] = new Mur();				// mettre un mur complet
 					}
 				}
 			}
-			else {																// Si on ne se trouve pas à la hauteur d'un mur 
+			else {										// Si on ne se trouve pas à la hauteur d'un mur 
 				for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++) {		// horizontal
 					
-					// Mettre des portes et des murs si on se trouve sur un mur vertical
+					// Mettre des portes et des murs si on se trouve sur un mur vertical.
 					if (i % (largeurPiece + 1) == 0) {
 						if (j % (hauteurPiece / 2 + 1) == 0 && i != 0 && i != nbrPiecesX * (largeurPiece + 1)) {
 							grille[i][j] = new Porte();
@@ -63,7 +63,7 @@ public class Grille {
 							grille[i][j] = new Mur();
 						}
 					}
-					// Poser le dernier mur vertical
+					// Poser le dernier mur vertical.
 					if (i == nbrPiecesX*(largeurPiece+1)-1) {
 						grille[i][j] = new Mur();
 					}
@@ -71,7 +71,7 @@ public class Grille {
 			}
 		}
 		
-		// La boucle suivante initialise des NonKitten et les place dans des cases aléatoires
+		// La boucle suivante initialise des NonKitten et les place dans des cases aléatoires.
 		for (int i = 0; i<nbrNonKitten-1; i++) {
 			Point cellule = this.randomEmptyCell();
 			grille[cellule.getX()][cellule.getY()] = new NonKitten();
@@ -132,18 +132,18 @@ public class Grille {
  	*/
 	public void afficher(Robot robot) {
 		
-		// Boucle qui se répète un nombre de fois équivalent à la quantité de cases en Y dans le jeu
+		// Boucle qui se répète un nombre de fois équivalent à la quantité de cases en Y dans le jeu.
 		for (int j = 0; j < grille[0].length; j++) {
 			
-			// Représente une ligne de cases (horizontales) dans un String
+			// Représente une ligne de cases (horizontales) dans un String.
 			// Chaque ligne horizontale sera affichée, une à la fois.
 			StringBuilder horizontal = new StringBuilder();
 			
-			// Aller chercher les coordonnées X et Y de l'attribut Point du robot
+			// Aller chercher les coordonnées X et Y de l'attribut Point du robot.
 			int posRobotX = robot.getPoint().getX();
 			int posRobotY = robot.getPoint().getY();
 			
-			// Itérer sur chaque case en X
+			// Itérer sur chaque case en X.
 			for (int i = 0; i < grille.length; i++) {
 				Case objet = grille[i][j];
 				
@@ -170,7 +170,7 @@ public class Grille {
 		
 		int coordX=0; int coordY=0;
 		
-		// La boucle se répétera jusqu'à ce qu'on trouve une case vide
+		// La boucle se répétera jusqu'à ce qu'on trouve une case vide.
 		while(grille[coordX][coordY] != null) {
 			coordX = (int) (Math.random()*grille.length);
 			coordY= (int) (Math.random()*grille[0].length);
@@ -182,14 +182,14 @@ public class Grille {
 
 
 	/**
-	 * La méthode déplacementPossible si le déplacement du robot est possible pour une cellule en particulier.
+	 * La méthode déplacementPossible indique si le déplacement du robot est possible pour une cellule en particulier.
 	 * @param robot objet qui représente un robot.
 	 * @param coordX coordonnée en x de la prochaine cellule.
 	 * @param coordY coordonnée en y de la prochaine cellule.
 	 */
 	public boolean deplacementPossible(Robot robot, int coordX, int coordY) {
 		
-		// objet représente l'objet qui se trouve à la case aux coordonnées coordX et coordY
+		// 'objet' représente l'objet qui se trouve à la case aux coordonnées coordX et coordY.
 		Case objet = grille[coordX][coordY];
 		if (objet !=null) {
 			return objet.interactionPossible(robot);
