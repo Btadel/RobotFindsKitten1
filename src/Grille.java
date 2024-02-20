@@ -1,16 +1,25 @@
+/**
+ * Classe qui représente la grille du jeu.
+ *
+ * @author Adèle Pomerleau
+ * @author Adel Tayeb Boudia
+ * @author Christelle Semaan
+ */
 public class Grille {
-	/**
-	 * @author Adèle Pomerleau
-	 * @author Adel tayeb Boudia
-	 * @author Christelle Semaan
-	 */
+
 	
 	//Les objets de type Grille n'ont qu'un seul attribut : une matrice 2D de cases
 	private Case[][] grille;
 
-	/* Son constructeur prend cinq paramètres :
-	* le nombre de pièces horizontales et de pièces verticales, la largeur et la longueur des pièces, ainsi 
-	* que le nombre de NonKitten qui se trouvent dans le jeu (incluant le téléporteur).*/
+	/**
+	 * Constructeur qui initialise la grille du jeu.
+	 * Crée les pièces, les portes, les murs, les clefs ainsi que les items.
+	 * @param hauteurPiece La hauteur de chaque pièce.
+	 * @param largeurPiece La largeur de chaque pièce.
+	 * @param nbrNonKitten Représente le nombre de non-kitten dans la grille de jeu(incluant le téléporteur).
+	 * @param nbrPiecesX Nombre de pièce à l'horizontal.
+	 * @param nbrPiecesY Nombre de Pièce à la vertical.
+	 */
 
 	public Grille(int nbrPiecesX, int nbrPiecesY, int largeurPiece,
 				  int hauteurPiece, int nbrNonKitten) {
@@ -91,17 +100,29 @@ public class Grille {
 
 	
 	// Getters et Setters de l'attribut grille
+	/**
+	 * Donne accès à la grille de jeu.
+	 * Permet à d'autres classe tel que 'RobotFindsKitten' de modifier son contenu.
+	 * @return l'affirmation this.grille qui représente une grille de jeu.
+	 */
 	public Case[][] getGrille(){
 		return this.grille;
 	}
 
+	/**
+	 * Met à jour la grille de jeu avec la nouvelle grille fournie en argument.
+	 * Permet la modification de la grille de l'extérieur de la classe grille.
+	 * @param grille une matrice 2D fait de l'objet case. Nouvelle grille remplaçant celle déja existante.
+	 */
 	public void setGrille(Case[][] grille) {
 		this.grille = grille;
 	}
 
-	/* La fonction afficher prend en paramètre le robot et print la grille
-	 dans le terminal */
-	
+
+	/**
+ 	* Affiche la grille avec la position du robot dans le terminal.
+ 	* @param robot Objet qui représente un robot dont la position sera affichée.
+ 	*/
 	public void afficher(Robot robot) {
 		
 		// Boucle qui se répète un nombre de fois équivalent à la quantité de cases en Y dans le jeu
@@ -134,8 +155,10 @@ public class Grille {
 
 	}
 
-	//Méthode qui retourne la position d'une cellule vide dans la grille
-
+	/**
+	 * Trouve et retourne la position d'une cellule vide sur la grille.
+	 * @return point
+	 */
 	public Point randomEmptyCell() {
 		
 		int coordX=0; int coordY=0;
@@ -150,7 +173,13 @@ public class Grille {
 		return caseVide;
 	}
 
-	// La méthode suivante indique si le déplacement du robot est possible
+
+	/**
+	 * Indique si le déplacement du robot est possible pour une cellule en particulier.
+	 * @param robot objet qui représente un robot.
+	 * @param coordX coordonnée en x de la prochaine cellule.
+	 * @param coordY coordonnée en y de la prochaine cellule.
+	 */
 	public boolean deplacementPossible(Robot robot, int coordX, int coordY) {
 		
 		// objet représente l'objet qui se trouve à la case aux coordonnées coordX et coordY
@@ -158,7 +187,10 @@ public class Grille {
 		return objet.interactionPossible(robot);
 	}
 
-	// Lance l’interaction entre le Robot robot et la case de la grille sur laquelle il se trouve
+	/**
+ 	 * Lance l’interaction entre le robot et la case de la grille sur laquelle il se trouve.
+ 	 * @param robot Représente le robot qui intéragit avec la grille de jeu.
+ 	 */
 	public void interagir(Robot robot) {
 		Point pos = robot.getPoint();
 		int coordX = pos.getX();
