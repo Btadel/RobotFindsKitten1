@@ -93,6 +93,10 @@ public class RobotFindsKitten {
 		int nouvellePosX = nouvellePos.getX();
 		int nouvellePosY = nouvellePos.getY();
 		
+		if (grilleJeu.deplacementPossible(robot, nouvellePosX, nouvellePosY)) {
+			robot.setPoint(nouvellePos);
+		}
+		
 		Case[][] grille = grilleJeu.getGrille();
 
 		/* Le robot interagit avec un objet si les deux sont à la même position.
@@ -100,8 +104,7 @@ public class RobotFindsKitten {
 		Case objet = grille[nouvellePosX][nouvellePosY];
 
 		// Interagir avec le robot si c'est possible
-		if (objet != null && objet.interactionPossible(robot) != false) {
-			objet.interagir(robot);
+		grilleJeu.interagir(robot);
 
 			// Affiche la description du NonKitten dans le cas où objet en est un
 			if (objet instanceof NonKitten) {
@@ -114,19 +117,8 @@ public class RobotFindsKitten {
 				grille[nouvellePosX][nouvellePosY] = null;
 				grilleJeu.setGrille(grille);
 			}
-			
-			// Changer la position du robot (son attribut point)
-			robot.setPoint(nouvellePos);
+
 		}
-		
-		// Si la case est vide
-		else if (objet == null) {
-			robot.setPoint(nouvellePos); // Met à jour la position du robot.
-		}
-		else {
-			return; // Si un objet est présent, mais l'interaction n'est pas possible, retour sans mouvement.
-		}
-	}
 	
 	/**
 	 * La fonction nouvellePosition calcule une nouvelle position pour le robot selon l'entrée de 

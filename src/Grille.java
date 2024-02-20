@@ -214,5 +214,8 @@ public class Grille {
 		if (objet != null && objet.interactionPossible(robot)) {
 			objet.interagir(robot);
 		}
+		else {
+			return;
+		}
 	}
 }
