@@ -1,6 +1,5 @@
 public class NonKitten extends Case {
     private final String descriptive;
-    private int nextDescription = -1;
     public static String[] descriptions = new String[]{
             "I pity the fool who mistakes me for kitten!\", sez Mr. T.",
             "That's just an old tin can.",
@@ -407,31 +406,24 @@ public class NonKitten extends Case {
             "Just a man selling an albatross.",
             "The intermission from a 1930s silent movie.",
             "It's an inverted billiard ball!",
-            "The spectre of Sherlock Holmes wills you onwards."
+            "The spectre of Sherlock Holmes wills you onwards.",
+            "It's Adel, Christelle and Adèle"
     };
 
     public NonKitten(){
         super.representation = getRandomSymbole();
-
-        //**if(nextDescription == descriptions.length) {
-       /*    nextDescription = 0;
-        }
-        else {
-            nextDescription++;
-        }
-        this.descriptive = descriptions[nextDescription];*/
         
-        String description = descriptions[(int) (Math.random()*descriptions.length)+1];
-		this.descriptive = (description);
+        // Génère une description aléatoire parmis celles ci-dessus
+        String description = descriptions[(int)Math.floor(Math.random() * (descriptions.length))];
+		this.descriptive = description;
    
     }
     public String getDescriptive(){
         return this.descriptive;
     }
-    
 
     @Override
-    //The robot is always able to interact with an NonKitten item
+    //Le robot peut toujours interragir avec un NonKitten
     public Boolean interactionPossible(Robot robot){
         return true;
     }

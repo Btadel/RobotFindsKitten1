@@ -1,9 +1,12 @@
 public class Robot {
+	
+	// Les objets de type robot prennent quatres paramètres
 	private String nom; 
 	private Point point; 
 	private int nbCles;
 	private boolean teleporteur;
 	
+	// Constructeur
 	public Robot(String nom, Point point, int nbCles, boolean teleporteur) {
 		this.nom = nom;
 		this.point = point;
@@ -11,6 +14,7 @@ public class Robot {
 		this.teleporteur = teleporteur;
 	}
 	
+	// Getters et setters pour chaque attribut du robot
 	public String getNom() {
 		return this.nom; 
 	}

@@ -1,4 +1,7 @@
 public class Cle extends Case {
+	
+	/** Les objets de type Cle ne prennent qu'un seul attribut de plus que case : leur état d'utilisation 
+	(true si elle a été utilisée et false dans le cas contraire) */
 	private boolean utilisation;
 	
 	public Cle() {
@@ -11,12 +14,17 @@ public class Cle extends Case {
 	}
 
 	@Override
+	// Fonction qui détermine si le robot peut interragir avec la clé
 	public void interagir(Robot robot) {
-		if (this.utilisation == false) {
-		int nbCles = robot.getNbCles() + 1;
-		robot.setNbCles(nbCles);
-		this.setUtilisation(true);
+		
+		// Si la clé n'est pas utilisée
+		if (!utilisation) {
+			int nbCles = robot.getNbCles() + 1;
+			robot.setNbCles(nbCles);
+			utilisation = true;
 		}
+		
+		// Si la clé a été utilisée, aucune interaction est permise
 		else {
 			return;
 		}
@@ -24,11 +32,13 @@ public class Cle extends Case {
 	
 	@Override
     public char getRepresentation() {
-		if (this.utilisation == true) {
-			this.representation = ' ';
+		
+		// Si la clé a été utilisée, elle n'apparait plus sur la grille
+		if (utilisation) {
+			representation = ' ';
 		} 
 		else {
-			this.representation = '\'';
+			representation = '\'';
 		}
         return representation;
     }
