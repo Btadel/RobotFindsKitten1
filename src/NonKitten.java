@@ -1,3 +1,14 @@
+/**
+ * classe qui hérite de 'Case'
+ *
+ * @author Professeur
+ * <p>
+ *     Modifications apportées par:
+ * <p>
+ * @author Adèle Pmerleau
+ * @author Adel Tayeb Boudia
+ * @author Christelle Semaan
+ */
 public class NonKitten extends Case {
     private final String descriptive;
     public static String[] descriptions = new String[]{
@@ -410,24 +421,40 @@ public class NonKitten extends Case {
             "It's Adel, Christelle and Adèle"
     };
 
+    /**
+     * Génère et associe aléatoirement un symbole et une description.
+     */
     public NonKitten(){
         super.representation = getRandomSymbole();
-        
+
         // Génère une description aléatoire parmis celles ci-dessus
         String description = descriptions[(int)Math.floor(Math.random() * (descriptions.length))];
-		this.descriptive = description;
-   
+        this.descriptive = description;
+
     }
+
+    /**
+     * Getter qui fournit l'informations sur le non-kitten rencontré dans le jeu.
+     */
     public String getDescriptive(){
         return this.descriptive;
     }
 
+
+    /**
+     * Le robot peut toujours interragir avec un NonKitten
+     * @param robot Objet qui intéragit avec les non-kittens
+     * @return True
+     */
     @Override
-    //Le robot peut toujours interragir avec un NonKitten
     public Boolean interactionPossible(Robot robot){
         return true;
     }
 
+    /**
+     * Effectue aucune action si appelée lors d'une interaction avec le robot.
+     * @param robot Objet qui intéragit avec les non-kittens
+     */
     @Override
     public void interagir(Robot robot){}
 }
