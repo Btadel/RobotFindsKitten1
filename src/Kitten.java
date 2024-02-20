@@ -1,5 +1,5 @@
 /**
- * Classe qui hérite de 'Case'. L'objet Kitten représente le Kitten et ses attributs
+ * Classe qui hérite de 'Case'. L'objet Kitten représente le Kitten et ses attributs.
  *
  * @author Adèle Pomerleau
  * @author Adel Tayeb Boudia
@@ -24,7 +24,7 @@ public class Kitten extends Case{
 	/**
 	 * Peut interagir avec le robot
 	 *
-	 * @param robot
+	 * @param robot objet qui pourrait interagir avec le kitten.
 	 */
 	@Override
 	public Boolean interactionPossible(Robot robot) {
@@ -34,7 +34,7 @@ public class Kitten extends Case{
 	/**
 	 *Interaction entre le Kitten et le robot : le jeu a été gagné!
 	 *
-	 * @param robot
+	 * @param robot objet qui interagit avec le kitten.
 	 */
 	@Override
 	public void interagir(Robot robot) {

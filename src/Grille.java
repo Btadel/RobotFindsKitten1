@@ -31,28 +31,28 @@ public class Grille {
 		
 		// Boucle qui initialise et place les murs et les portes.
 		for (int j = 0; j < grille[0].length; j++) {					        // Itérer sur chaque ligne horizontale
-			if (j % (hauteurPiece + 1) == 0) {					        // Se trouve à la hauteur d'un mur horizontal
-				if (j != 0 && j != nbrPiecesY * (hauteurPiece + 1)) {		        // Vérifier que ce n'est pas le premier ou dernier
-												        // mur
+			if (j % (hauteurPiece + 1) == 0) {					                // Se trouve à la hauteur d'un mur horizontal
+				if (j != 0 && j != nbrPiecesY * (hauteurPiece + 1)) {		    // Vérifier que ce n'est pas le premier ou dernier mur		
+
 					double i1 = (double) largeurPiece / 2;{
-					for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++)       // Si on se trouve à la moitié du mur : mettre
-												        // une porte
+					for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++)   // Si on se trouve à la moitié du mur : mettre une porte
+												        
 						if (i % (largeurPiece +1) == Math.ceil(i1)) {
 							grille[i][j] = new Porte();
 						}
-						else {						        // Sinon mettre un mur
+						else {						                            // Sinon mettre un mur
 							grille[i][j] = new Mur();
 						}
 					}
 				}
 				else {
-					for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++) {	// Si c'est le premier ou dernier mur horizontal :
-						grille[i][j] = new Mur();				// mettre un mur complet
+					for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++) {	// Si c'est le premier ou dernier mur horizontal :mettre un mur complet
+						grille[i][j] = new Mur();				             
 					}
 				}
 			}
-			else {										// Si on ne se trouve pas à la hauteur d'un mur 
-				for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++) {		// horizontal
+			else {										                        // Si on ne se trouve pas à la hauteur d'un mur horizontal
+				for (int i = 0; i < nbrPiecesX * (largeurPiece + 1); i++) {		
 					
 					// Mettre des portes et des murs si on se trouve sur un mur vertical.
 					if (i % (largeurPiece + 1) == 0) {

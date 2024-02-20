@@ -13,7 +13,6 @@ public class Robot {
 	private int nbCles;            // Nombre de clefs collectées non utilisées
 	private boolean teleporteur;   // si en possesion du téléporteur
 
-	// Constructeur
 	/**
 	 * Crée un robot avec un nom, une position, un nombre de clés et l'état du téléporteur.
 	 *
@@ -29,9 +28,9 @@ public class Robot {
 		this.teleporteur = teleporteur;
 	}
 
-	// Getters et setters pour chaque attribut du robot
+	// Getters et setters pour chaque attribut du robot:
 	/**
-	 * Getter qui récupère la valeur du nom
+	 * Getter qui récupère la valeur du nom.
 	 * 
 	 * @return nom un string contenant le nom du robot
 	 */
@@ -40,7 +39,7 @@ public class Robot {
 	}
 
 	/**
-	 * Permet de mettre à jour la valeur de l'attribut nom d'un robot.
+	 * Setter qui permet de mettre à jour la valeur de l'attribut nom d'un robot.
 	 *
 	 * @param nom
 	 */
@@ -56,7 +55,7 @@ public class Robot {
 	}
 
 	/**
-	 * Permet de mettre à jour la position d'un robot en fournissant une nouvelle position comme argument.
+	 * Setter qui permet de mettre à jour la position d'un robot en fournissant une nouvelle position comme argument.
 	 *
 	 * @param point
 	 */
@@ -74,7 +73,7 @@ public class Robot {
 	}
 
 	/**
-	 * Permet de mettre à jour le nombre de clés détenues par un objet Robot.
+	 * Setter qui permet de mettre à jour le nombre de clés détenues par un objet Robot.
 	 *
 	 * @param nbCles
 	 */
@@ -92,7 +91,7 @@ public class Robot {
 	}
 
 	/**
-	 * Permet de mettre à jour l'état de téléporteur d'un robot.
+	 * Setter qui permet de mettre à jour l'état de téléporteur d'un robot.
 	 *
 	 * @param teleporteur
 	 */

@@ -1,5 +1,5 @@
 /**
- * classe qui hérite de 'Case'
+ * Classe qui hérite de 'Case'
  *
  * @author Professeur
  * <p>
@@ -436,7 +436,7 @@ public class NonKitten extends Case {
     /**
      * Getter qui fournit l'informations sur le non-kitten rencontré dans le jeu.
      * 
-     * @return descriptive Un string représentant la description de l'objet
+     * @return descriptive Un string représentant la description de l'objet.
      */
     public String getDescriptive(){
         return this.descriptive;
@@ -445,7 +445,7 @@ public class NonKitten extends Case {
 
     /**
      * Le robot peut toujours interagir avec un NonKitten
-     * @param robot Objet qui interagit avec les non-kittens
+     * @param robot Objet qui interagit avec les non-kittens.
      * @return True
      */
     @Override
@@ -455,7 +455,7 @@ public class NonKitten extends Case {
 
     /**
      * Effectue aucune action si appelée lors d'une interaction avec le robot.
-     * @param robot Objet qui intéragit avec les non-kittens
+     * @param robot Objet qui intéragit avec les non-kittens.
      */
     @Override
     public void interagir(Robot robot){}

@@ -33,11 +33,11 @@ public class RobotFindsKitten {
 		Point depart = grilleJeu.randomEmptyCell();
 		Robot robot = new Robot("R.O.B", depart, 0, false);
 
-		// Premier affichage du jeu 
+		// Premier affichage du jeu. 
 		grilleJeu.afficher(robot);
 		System.out.println(robot.getNom() + "[" + robot.getNbCles() + "]>");
 
-		// Boucle qui permet de bouger le robot 
+		// Boucle qui permet de bouger le robot. 
 		while (!finDuJeu(grilleJeu, robot)) {
 			Scanner scanner = new Scanner(System.in);         // Crée un objet qui lit la saisie du joueur.
 			String entree  = scanner.nextLine();              // Lit la saisie du joueur.
@@ -60,8 +60,8 @@ public class RobotFindsKitten {
 
 	/**
 	 * La méthode fin du jeu détermine si le jeu est gagné.
-	 * @param grille Objet Grille qui représente la grille du jeu.
-	 * @param robot  Objet Robot qui représente le robot et ses attributs.
+	 * @param grille Une matrice 2D qui représente la grille du jeu.
+	 * @param robot Un objet qui représente le robot et ses attributs.
 	 * @return True si la partie est terminée, False si la partie est encore en cours.
 	 */
 	public static boolean finDuJeu(Grille grilleJeu, Robot robot) {
@@ -74,10 +74,10 @@ public class RobotFindsKitten {
 		boolean partieTerminee = false;            // Indique que le jeu n'est pas terminé initialement.
 
 		if (grille[posRobotX][posRobotY] instanceof Kitten) {
-			partieTerminee = true;               // Vérifie si le robot est la même position que le Kitten, si c'est 
-												 // le cas termine la partie.
+			partieTerminee = true;                 // Vérifie si le robot est la même position que le Kitten, si c'est 
+												   // le cas termine la partie.
 		}
-		return partieTerminee;                   // Indique si le jeu est toujours en cours ou non.
+		return partieTerminee;                     // Indique si le jeu est toujours en cours ou non.
 	}
 
 	/**
@@ -103,10 +103,10 @@ public class RobotFindsKitten {
 		La variable objet est l'objet (de type général case) se trouvant sur cette case de la grille*/
 		Case objet = grille[nouvellePosX][nouvellePosY];
 
-		// Interagir avec le robot si c'est possible
+		// Interagir avec le robot si c'est possible.
 		grilleJeu.interagir(robot);
 
-			// Affiche la description du NonKitten dans le cas où objet en est un
+			// Affiche la description du NonKitten dans le cas où objet en est un.
 			if (objet instanceof NonKitten) {
 				System.out.println(((NonKitten) objet).getDescriptive());
 			}
@@ -124,7 +124,7 @@ public class RobotFindsKitten {
 	 * La fonction nouvellePosition calcule une nouvelle position pour le robot selon l'entrée de 
 	 * l'utilisateur dans le scanner.
 	 * 
-	 * @param robot Objet qui représentant le robot à déplacer.
+	 * @param robot Objet qui représente le robot à déplacer.
 	 * @param entree Un caractère représentant la direction dans laquelle le robot doit se déplacer
 	 *               ("a" pour la gauche, "w" pour le haut, "s" pour le bas, "d" pour la droite,
 	 *               "t" pour la téléportation).
@@ -132,17 +132,17 @@ public class RobotFindsKitten {
 	 * @return nouvellePos un point représentant la position du robot après l'entrée de l'utilisateur.
 	 */
 	public static Point nouvellePosition(Robot robot, char entree, Grille grilleJeu) {
-		// Chercher la position en X et en Y du robot avec les getters
+		// Chercher la position en X et en Y du robot avec les getters.
 				int positionRobotX = robot.getPoint().getX();
 				int positionRobotY = robot.getPoint().getY();
 				
 				// Va chercher l'attribut Teleporteur du robot au moment de l'entrée.
 				boolean teleporteur = robot.getTeleporteur();
 				
-				// nouvellePos est la nouvelle position du robot
+				// nouvellePos est la nouvelle position du robot.
 				Point nouvellePos = null;
 				
-				// Entrées possibles et les positions qui en résultent
+				// Entrées possibles et les positions qui en résultent.
 				if (entree == 'a') {
 					nouvellePos = new Point(positionRobotX-1,positionRobotY);
 				}
@@ -157,10 +157,10 @@ public class RobotFindsKitten {
 				}
 				
 				/* Si l'utilisateur entre 't' et qu'il possède un téléporteur, il se retouvera à une position aléatoire 
-				sur la grille */
+				sur la grille. */
 				
 				else if (entree == 't' && teleporteur){
-					// La nouvelle position du robot est une case aléatoire sur la grille
+					// La nouvelle position du robot est une case aléatoire sur la grille.
 					Point teleportation =  grilleJeu.randomEmptyCell();
 					nouvellePos = teleportation;
 				}
@@ -169,7 +169,7 @@ public class RobotFindsKitten {
 				else if (entree != 'a' || entree != 's' || entree != 'd' || entree !='w' || 
 						(entree == 't' && teleporteur == false)) {
 					
-					// Si l'entrée n'est pas valide, il reste au même endroit
+					// Si l'entrée n'est pas valide, il reste au même endroit.
 					nouvellePos = robot.getPoint();
 				}
 				
@@ -186,7 +186,7 @@ public class RobotFindsKitten {
 	 */
 	public static String etatTeleporteur(Robot robot) {
 
-        // Récupère l'état du teleporteur
+        // Récupère l'état du teleporteur.
 		boolean etat = robot.getTeleporteur();
 		if (etat) {
 			return "T";

@@ -1,6 +1,6 @@
 import java.util.*;
 /**
- * représentation d'un point (x,y)
+ * Représentation d'un point (x,y).
  *
  * @author Professeur
  * <p>
@@ -18,8 +18,8 @@ public class Point {
     //CONSTRUCTEUR
     /**
      * Initialise un point avec des coordonées (x,y) spécifique.
-     * @param x coordonée en x du point
-     * @param y coordonée en y du point
+     * @param x coordonée en x du point.
+     * @param y coordonée en y du point.
      */
     public	Point(int x, int y) {
         this.x = x;
@@ -29,9 +29,9 @@ public class Point {
     //METHODES
     /**
      * Vérifie si les coordonées du point concordent avec 'x' et 'y'.
-     * @param x coordonée en x du point
-     * @param y coordonée en y du point
-     * @return True si égale, sinon False
+     * @param x coordonée en x du point.
+     * @param y coordonée en y du point.
+     * @return True si égale, sinon False.
      */
     public boolean egal(int x, int y) {
         return x == this.x && y == this.y;

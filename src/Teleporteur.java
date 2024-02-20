@@ -1,11 +1,12 @@
 /**
- * Classe qui hérite de 'Case'
+ * Classe qui hérite de 'Case'.
  *
  * @author Adèle Pomerleau
  * @author Adel Tayeb Boudia
  * @author Christelle Semaan
  */
 public class Teleporteur extends Case{
+
 	/**
 	 * Constructeur qui initialise un téléporteur.
 	 * lorsqu'affiché visuellement dans la grille de jeu, il est représenté par le charactère 'T'.
@@ -16,7 +17,7 @@ public class Teleporteur extends Case{
 
 	/**
 	 * Le robot peut toujours interagir avec le téléporteur.
-	 * @param robot Objet qui représente le robot
+	 * @param robot Objet qui pourrait interagir avec le robot.
 	 * @return True
 	 */
 	@Override
@@ -26,7 +27,7 @@ public class Teleporteur extends Case{
 
 	/**
 	 * Le robot a trouvé le téléporteur.
-	 * @param robot Objet
+	 * @param robot Objet qui a interagit avec le téléporteur.
 	 */
 	@Override
 	public void interagir(Robot robot) {
